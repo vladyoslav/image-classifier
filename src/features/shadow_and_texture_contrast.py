@@ -31,6 +31,8 @@ class ShadowAndTextureContrast(IFeature):
 
         # Normalize by the standard deviation of the Laplacian
         laplacian_std = np.std(laplacian)
-        normalized_contrast_score = raw_contrast_score / (laplacian_std if laplacian_std > 0 else 1)
+        normalized_contrast_score = raw_contrast_score / (
+            laplacian_std if laplacian_std > 0 else 1
+        )
 
         return normalized_contrast_score

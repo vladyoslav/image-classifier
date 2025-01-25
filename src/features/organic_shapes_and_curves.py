@@ -27,12 +27,18 @@ class OrganicShapesAndCurves(IFeature):
 
         edges = cv2.Canny(blurred_image, 100, 200)
 
-        contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(
+            edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
 
         # Calculate the total length of all contours
-        total_contour_length = sum(cv2.arcLength(contour, closed=True) for contour in contours)
+        total_contour_length = sum(
+            cv2.arcLength(contour, closed=True) for contour in contours
+        )
 
         # Normalize by the number of contours to avoid bias from larger images
-        normalized_contour_length = total_contour_length / len(contours) if contours else 0
+        normalized_contour_length = (
+            total_contour_length / len(contours) if contours else 0
+        )
 
         return normalized_contour_length

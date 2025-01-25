@@ -22,12 +22,12 @@ init:
 
 ## Run linters
 lint:
-	poetry run ruff check tests src \
+	poetry run ruff check tests src notebooks \
 	& poetry run ruff format --check tests src
 
 ## Reformat code
 format:
-	poetry run ruff format tests src & poetry run ruff check --fix
+	poetry run ruff format tests src notebooks & poetry run ruff check --fix
 
 ## Run all tests in project
 test:

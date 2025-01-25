@@ -35,7 +35,9 @@ class BlueAndTurquoiseGradientDensity(IFeature):
 
         combined_mask = cv2.bitwise_or(blue_mask, turquoise_mask)
 
-        color_density = cv2.countNonZero(combined_mask) / (image.shape[0] * image.shape[1])
+        color_density = cv2.countNonZero(combined_mask) / (
+            image.shape[0] * image.shape[1]
+        )
 
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gradient_x = cv2.Sobel(gray_image, cv2.CV_64F, 1, 0, ksize=3)

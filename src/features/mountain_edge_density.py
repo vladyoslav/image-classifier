@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from .feature import IFeature
 
+
 class MountainEdgeDensity(IFeature):
     """
     A feature extractor that detects sharp edges between the sky and rocky terrain in mountain landscapes.

@@ -27,7 +27,9 @@ class VerticalLineDensity(IFeature):
 
         edges = cv2.Canny(gray_image, threshold1=50, threshold2=150)
 
-        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=100, minLineLength=100, maxLineGap=10)
+        lines = cv2.HoughLinesP(
+            edges, 1, np.pi / 180, threshold=100, minLineLength=100, maxLineGap=10
+        )
 
         vertical_lines_count = 0
         total_lines_count = 0
@@ -39,6 +41,8 @@ class VerticalLineDensity(IFeature):
                     vertical_lines_count += 1
 
         # Normalize by the total number of lines, return 0 if no lines were found
-        density = vertical_lines_count / total_lines_count if total_lines_count > 0 else 0
+        density = (
+            vertical_lines_count / total_lines_count if total_lines_count > 0 else 0
+        )
 
         return density

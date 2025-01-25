@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from .feature import IFeature
 
+
 class AsphaltAndStoneTextureDensity(IFeature):
     """
     A feature for calculating the density of asphalt and stone textures in an image.

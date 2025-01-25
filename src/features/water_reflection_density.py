@@ -27,7 +27,9 @@ class WaterReflectionDensity(IFeature):
         # Apply a threshold to highlight potential water surfaces with reflections
         _, thresholded = cv2.threshold(gray_image, 100, 255, cv2.THRESH_BINARY)
 
-        contours, _ = cv2.findContours(thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(
+            thresholded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
 
         reflection_density = len(contours) / (image.shape[0] * image.shape[1])
 
