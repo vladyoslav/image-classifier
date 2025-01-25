@@ -18,6 +18,7 @@ from src.features import (
 )
 from typing import Dict, List
 
+
 class ImageClassifier:
     """
     A classifier for images using a Random Forest model and a set of predefined features.
