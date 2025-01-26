@@ -1,4 +1,4 @@
-.PHONY: env install init lint format
+.PHONY: env install init lint format test app
 
 ifeq ($(shell test -e '.env' && echo -n yes), yes)
 	include .env
@@ -32,6 +32,10 @@ format:
 ## Run all tests in project
 test:
 	poetry run pytest -o log_cli=true --verbosity=2 --showlocals --log-cli-level=INFO --cov=src --cov-report term
+
+## Run web app
+app:
+	poetry run streamlit run ui/main.py
 
 .DEFAULT_GOAL := help
 # See <https://gist.github.com/klmr/575726c7e05d8780505a> for explanation.
