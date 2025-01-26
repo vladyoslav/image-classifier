@@ -28,7 +28,24 @@ class IFeature(ABC):
 
 # Feature 1: Count of horizontal edges
 class HorizontalEdgeCount(IFeature):
+    """
+    A feature for counting the number of horizontal edges in an image.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the number of horizontal edges in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The total count of horizontal edges in the image.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -39,7 +56,24 @@ class HorizontalEdgeCount(IFeature):
 
 # Feature 2: Count of vertical edges
 class VerticalEdgeCount(IFeature):
+    """
+    A feature for counting the number of vertical edges in an image.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the number of vertical edges in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The total count of vertical edges in the image.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -50,7 +84,24 @@ class VerticalEdgeCount(IFeature):
 
 # Feature 3: Count of corners (using Harris Corner Detection)
 class CornerCount(IFeature):
+    """
+    A feature for counting the number of corners in an image using Harris Corner Detection.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the number of corners in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The total count of corners in the image.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -58,10 +109,26 @@ class CornerCount(IFeature):
         corners = cv2.cornerHarris(gray, 2, 3, 0.04)
         return np.sum(corners > 0.01 * corners.max())
 
-
 # Feature 4: Percentage of green pixels (forest indicator)
 class GreenPixelPercentage(IFeature):
+    """
+    A feature for calculating the percentage of green pixels in an image, indicative of forest areas.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the percentage of green pixels in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The percentage of green pixels in the image.
+        """
         if len(image.shape) != 3:
             return 0
         green_mask = (image[:, :, 1] > image[:, :, 0]) & (
@@ -72,7 +139,24 @@ class GreenPixelPercentage(IFeature):
 
 # Feature 5: Percentage of blue pixels (sea indicator)
 class BluePixelPercentage(IFeature):
+    """
+    A feature for calculating the percentage of blue pixels in an image, indicative of sea areas.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the percentage of blue pixels in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The percentage of blue pixels in the image.
+        """
         if len(image.shape) != 3:
             return 0
         blue_mask = (image[:, :, 2] > image[:, :, 1]) & (
@@ -83,7 +167,24 @@ class BluePixelPercentage(IFeature):
 
 # Feature 6: Contrast (sharp transitions, e.g., mountains against sky)
 class ContrastMeasure(IFeature):
+    """
+    A feature for measuring the contrast in an image, indicative of sharp transitions like mountains against the sky.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the contrast measure of the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The variance of the Laplacian, representing the contrast.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -93,7 +194,24 @@ class ContrastMeasure(IFeature):
 
 # Feature 7: Average texture complexity
 class TextureComplexity(IFeature):
+    """
+    A feature for calculating the average texture complexity in an image.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the average texture complexity of the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The mean value of edges detected in the image.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -103,7 +221,24 @@ class TextureComplexity(IFeature):
 
 # Feature 8: Percentage of white pixels (glacier or mountain indicator)
 class SkyPixelRatio(IFeature):
+    """
+    A feature for calculating the ratio of sky pixels in an image, based on HSV color space.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the ratio of sky pixels in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The ratio of sky pixels in the image.
+        """
         if len(image.shape) != 3:
             return 0
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -113,7 +248,24 @@ class SkyPixelRatio(IFeature):
 
 # Feature 9: Shadow presence
 class ShadowPresence(IFeature):
+    """
+    A feature for detecting the presence of shadows in an image.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the proportion of shadow pixels in the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The ratio of shadow pixels in the image.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -122,7 +274,24 @@ class ShadowPresence(IFeature):
 
 # Feature 10: Symmetry measure
 class SymmetryMeasure(IFeature):
+    """
+    A feature for measuring the symmetry of an image by comparing it to its horizontally flipped version.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the symmetry measure of the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            A value representing the degree of symmetry, where 1 is perfectly symmetrical.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -133,7 +302,24 @@ class SymmetryMeasure(IFeature):
 
 # Feature 11: Sharpness
 class SharpnessMeasure(IFeature):
+    """
+    A feature for measuring the sharpness of an image using the variance of the Laplacian.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the sharpness of the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The variance of the Laplacian, representing sharpness.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
@@ -143,7 +329,24 @@ class SharpnessMeasure(IFeature):
 
 # Feature 12: Average brightness
 class AverageBrightness(IFeature):
+    """
+    A feature for calculating the average brightness of an image.
+    """
+
     def calculate(self, image: np.ndarray) -> float:
+        """
+        Calculate the average brightness of the input image.
+
+        Parameters
+        ----------
+        image : np.ndarray
+            The input image.
+
+        Returns
+        -------
+        float
+            The mean pixel intensity, representing brightness.
+        """
         gray = (
             cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
         )
