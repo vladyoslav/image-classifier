@@ -109,6 +109,7 @@ class CornerCount(IFeature):
         corners = cv2.cornerHarris(gray, 2, 3, 0.04)
         return np.sum(corners > 0.01 * corners.max())
 
+
 # Feature 4: Percentage of green pixels (forest indicator)
 class GreenPixelPercentage(IFeature):
     """
