@@ -1,8 +1,19 @@
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from src.features import HorizontalEdgeCount, VerticalEdgeCount, CornerCount, GreenPixelPercentage, BluePixelPercentage, \
-    ContrastMeasure, TextureComplexity, SkyPixelRatio, ShadowPresence, SymmetryMeasure, SharpnessMeasure, \
-    AverageBrightness
+from src.features import (
+    HorizontalEdgeCount,
+    VerticalEdgeCount,
+    CornerCount,
+    GreenPixelPercentage,
+    BluePixelPercentage,
+    ContrastMeasure,
+    TextureComplexity,
+    SkyPixelRatio,
+    ShadowPresence,
+    SymmetryMeasure,
+    SharpnessMeasure,
+    AverageBrightness,
+)
 
 
 class ImageClassifier:
@@ -10,7 +21,7 @@ class ImageClassifier:
     A classifier for images that uses extracted features to predict categories.
     """
 
-    categories = ['forest', 'glacier', 'street', 'sea']
+    categories = ["forest", "glacier", "street", "sea"]
     features = [
         HorizontalEdgeCount(),
         VerticalEdgeCount(),

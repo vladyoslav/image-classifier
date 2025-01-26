@@ -3,7 +3,10 @@ import cv2
 import numpy as np
 from typing import List, Tuple
 
-def load_images_from_categories(path: str, categories: List[str]) -> Tuple[List[np.ndarray], List[str]]:
+
+def load_images_from_categories(
+    path: str, categories: List[str]
+) -> Tuple[List[np.ndarray], List[str]]:
     images: List[np.ndarray] = []
     labels: List[str] = []
 
