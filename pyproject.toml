@@ -11,7 +11,6 @@ requires-python = ">=3.12"
 dependencies = [
     "kagglehub (>=0.3.6,<0.4.0)",
     "numpy (>=2.2.2,<3.0.0)",
-    "opencv-python (>=4.11.0.86,<5.0.0.0)",
     "scipy (>=1.15.1,<2.0.0)",
     "joblib (>=1.4.2,<2.0.0)",
     "scikit-learn (>=1.6.1,<2.0.0)",
@@ -22,6 +21,7 @@ dependencies = [
     "seaborn (>=0.13.2,<0.14.0)",
     "pytest (>=8.3.4,<9.0.0)",
     "pytest-cov (>=6.0.0,<7.0.0)",
+    "opencv-python-headless (>=4.11.0.86,<5.0.0.0)",
 ]
 
 [build-system]
