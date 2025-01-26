@@ -2,21 +2,12 @@ import numpy as np
 import joblib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
-from src.features import (
-    GreenPixelDensity,
-    StraightAngles,
-    WhiteAndBluePixelDensity,
-    ShadowAndTextureContrast,
-    BlueAndTurquoiseGradientDensity,
-    TextureSmoothness,
-    HorizontalLineDensity,
-    VerticalLineDensity,
-    AsphaltAndStoneTextureDensity,
-    OrganicShapesAndCurves,
-    MountainEdgeDensity,
-    WaterReflectionDensity,
-)
 from typing import Dict, List
+
+from src.new_features.feature import HorizontalEdgeCount, CornerCount, VerticalEdgeCount, GreenPixelPercentage, \
+    BluePixelPercentage, ContrastMeasure, PerspectiveMeasure, WhitePixelPercentage, SkyPixelRatio, \
+    TextureComplexity, ColorDiversity, DominantColor, ShadowPresence, SymmetryMeasure, SharpnessMeasure, \
+    AverageBrightness, SaturationVariability
 
 
 class ImageClassifier:
@@ -29,18 +20,24 @@ class ImageClassifier:
 
     # Class-level feature extractors
     _FEATURE_EXTRACTORS = [
-        GreenPixelDensity(),
-        StraightAngles(),
-        WhiteAndBluePixelDensity(),
-        ShadowAndTextureContrast(),
-        BlueAndTurquoiseGradientDensity(),
-        TextureSmoothness(),
-        HorizontalLineDensity(),
-        VerticalLineDensity(),
-        AsphaltAndStoneTextureDensity(),
-        OrganicShapesAndCurves(),
-        MountainEdgeDensity(),
-        WaterReflectionDensity(),
+        HorizontalEdgeCount(),
+        VerticalEdgeCount(),
+        CornerCount(),
+        GreenPixelPercentage(),
+        BluePixelPercentage(),
+        ContrastMeasure(),
+        PerspectiveMeasure(),
+        WhitePixelPercentage(),
+        # HOGFeature(),
+        TextureComplexity(),
+        SkyPixelRatio(),
+        ColorDiversity(),
+        DominantColor(),
+        ShadowPresence(),
+        SymmetryMeasure(),
+        SharpnessMeasure(),
+        AverageBrightness(),
+        SaturationVariability(),
     ]
 
     _CATEGORIES = ["forest", "buildings", "glacier", "street", "mountain", "sea"]
