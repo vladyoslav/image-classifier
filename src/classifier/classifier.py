@@ -38,7 +38,7 @@ class ImageClassifier:
     ]
 
     def __init__(self):
-        self.classifier = RandomForestClassifier(random_state=52)
+        self.classifier = RandomForestClassifier(random_state=42)
 
     def _extract_features(self, image: np.ndarray) -> list:
         """
