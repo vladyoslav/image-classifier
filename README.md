@@ -13,7 +13,7 @@
 3. **Море**: Фотографии морей и океанов.
 4. **Ледник**: Снимки ледников и заснеженных пейзажей.
 
-[Dataset link](https://www.kaggle.com/datasets/rahmasleam/intel-image-dataset)
+Приложение использует датасет под лицензией Apache 2.0 [Ссылка на датасет](https://www.kaggle.com/datasets/rahmasleam/intel-image-dataset)
 
 ### Использование
 
